@@ -16,7 +16,7 @@ cd NobelPrizeAPI
 ### 1. Build and Run the Containers
 Run the following command to build and start the containers:
 ```sh
-docker-compose up --build
+docker compose up
 ```
 
 ### 2. Verify the Setup
