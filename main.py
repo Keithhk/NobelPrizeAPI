@@ -3,23 +3,9 @@ from pymongo import MongoClient
 from bson.regex import Regex
 import requests
 import os
-from rapidfuzz import process, fuzz
-#
-# class LaureateBase(BaseModel):
-#     firstname: str = Field(..., title="First Name", min_length=1, max_length=100)
-#     surname: Optional[str] = Field(None, title="Surname", max_length=100)
-#     category: str = Field(..., title="Prize Category", min_length=2, max_length=50)
-#     year: int = Field(..., title="Prize Year", ge=1901, le=2100)
-#     motivation: Optional[str] = Field(None, title="Prize Motivation", max_length=500)
-#
-# class LaureateCreate(LaureateBase):
-#     id: str = Field(default_factory=lambda: str(uuid4()), title="Unique Laureate ID")
-#
-# class LaureateUpdate(LaureateBase):
-#     pass
+from rapidfuzz import fuzz
 
-
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongodb:27017")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 DB_NAME = "nobel_prizes"
 COLLECTION_NAME = "laureates"
 
@@ -101,41 +87,3 @@ def search_nobel_prize(
     ranked_results.sort(reverse=True, key=lambda x: x[0])
 
     return {"results": [r[1] for r in ranked_results[:limit]]}
-
-
-
-
-# @app.post("/add_laureate")
-# def add_laureate(laureate: LaureateCreate):
-#     # Check if laureate already exists
-#     existing_record = collection.find_one({
-#         "firstname": laureate.firstname,
-#         "surname": laureate.surname,
-#         "category": laureate.category,
-#         "year": laureate.year
-#     })
-#
-#     if existing_record:
-#         raise HTTPException(status_code=400, detail="Laureate already exists.")
-#
-#     # Insert new record
-#     collection.insert_one(laureate.dict())
-#     return {"message": "New laureate added successfully", "record": laureate.dict()}
-#
-#
-# @app.put("/update_laureate/{id}")
-# def update_laureate(id: str = Path(..., title="Laureate ID"), laureate: LaureateUpdate = None):
-#     # Ensure the ID is a valid MongoDB ObjectId
-#     if not ObjectId.is_valid(id):
-#         raise HTTPException(status_code=400, detail="Invalid ID format.")
-#
-#     # Find existing record
-#     existing_record = collection.find_one({"_id": ObjectId(id)})
-#     if not existing_record:
-#         raise HTTPException(status_code=404, detail="Laureate not found.")
-#
-#     # Update record
-#     update_data = {k: v for k, v in laureate.dict().items() if v is not None}
-#     collection.update_one({"_id": ObjectId(id)}, {"$set": update_data})
-#
-#     return {"message": "Laureate updated successfully", "updated_fields": update_data}

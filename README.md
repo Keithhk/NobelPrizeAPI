@@ -9,8 +9,8 @@ This is a FastAPI-based web application that provides a searchable MongoDB datab
 
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/Keithhk/NobelPrizeAPI.git
-cd NobelPrizeSearch
+git clone https://github.com/keithhk/NobelPrizeAPI.git
+cd NobelPrizeAPI
 ```
 
 ### 1. Build and Run the Containers
