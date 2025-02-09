@@ -26,4 +26,12 @@ Once the containers are running, open your browser and visit:
 http://127.0.0.1:8000/docs
 ```
 
+### 3. Test the database search
+visit the search endpoint and provide a search term. For example:
+
+```sh
+http://127.0.0.1:8000/search?query=albret%20einstein
+```
+
+
 
