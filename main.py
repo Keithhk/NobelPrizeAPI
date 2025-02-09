@@ -19,7 +19,7 @@ from rapidfuzz import process, fuzz
 #     pass
 
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongodb:27017")
 DB_NAME = "nobel_prizes"
 COLLECTION_NAME = "laureates"
 
